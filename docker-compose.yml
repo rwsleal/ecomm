@@ -1,0 +1,5 @@
+version: "3.9"
+services:
+  product:
+    image: ecomm-product
+    container_name: product
