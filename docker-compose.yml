@@ -3,3 +3,7 @@ services:
   product:
     image: ecomm-product
     container_name: product
+  
+  account:
+    image: ecomm-account
+    container_name: account
