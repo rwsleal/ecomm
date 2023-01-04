@@ -27,6 +27,4 @@ const createUserUseCase = (name, email, password) => {
     return userInfo
 }
 
-console.log(createUserUseCase('nome', 'email', 'password'));
-
 export { createUserUseCase }
