@@ -3,4 +3,4 @@ WORKDIR /app-node
 COPY package.json .
 RUN npm install
 COPY . .
-ENTRYPOINT npm test
+ENTRYPOINT npm start
