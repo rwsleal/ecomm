@@ -10,7 +10,7 @@ const saveUser = (user) => {
     const accounts = JSON.parse(fs.readFileSync('./src/use-case/accounts.json'));
     const newAccounts = [...accounts, user];
 
-    fs.writeFileSync('accounts.json', JSON.stringify(newAccounts));
+    fs.writeFileSync('./src/use-case/accounts.json', JSON.stringify(newAccounts));
 }
 
 const createUserUseCase = (name, email, password) => {
