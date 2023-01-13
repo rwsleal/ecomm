@@ -1,0 +1,6 @@
+db.products.find({$and: [
+    {preco_unitario: { $gte: 1000 }},
+    {preco_unitario: { $lte: 2000 }}
+  ]},
+  {produto: 1, preco_unitario: 1}
+)
