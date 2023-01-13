@@ -6,7 +6,7 @@ db.products.find({}).forEach((product) => {
     let category = db.categories.findOne({"nome": product.categoria});
 
     product.categoria = {
-        name: category.nome,
+        nome: category.nome,
         _id: category._id
     };
 
