@@ -1,0 +1,14 @@
+// comando para ser utilizado no mongosh
+
+use ecomm-product
+
+db.products.find({}).forEach((product) => {
+    let category = db.categories.findOne({"nome": product.categoria});
+
+    product.categoria = {
+        name: category.nome,
+        _id: category._id
+    };
+
+    db.products.replaceOne( {"_id": product._id}, product )
+})
