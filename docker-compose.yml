@@ -1,5 +1,9 @@
 version: "3.9"
 services:
   product:
-    image: ecomm-product
-    container_name: product
+    build: ./product
+    container_name: ecomm-product
+  
+  account:
+    build: ./account
+    container_name: ecomm-account
