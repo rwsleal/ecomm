@@ -1,0 +1,1 @@
+db.categories.updateOne({nome: "ESPORTE"}, {$set: {status: "ATIVA"}});
