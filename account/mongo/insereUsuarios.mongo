@@ -5,7 +5,7 @@ db.accounts.insertMany([
     "password": "4cab2a2db6a3c31b01d804def28276e6",
     "createdDate": new ISODate(),
     "cpf": '36391181896',
-    "telefone":  '5583988939542',
+    "phone":  '5583988939542',
     "address": {
         "street": "Rua Agenor Marinho de Souza",
         "number": "485",
@@ -22,7 +22,7 @@ db.accounts.insertMany([
       "password": "4cab2a2db6a3c31b01d804def28276e6",
       "createdDate": new ISODate(),
       "cpf": '35751722264"',
-      "telefone":   '5532981820900',
+      "phone":   '5532981820900',
       "address": {
           "street": "Rua Nair do Prado Manso",
           "number": "999",
@@ -39,7 +39,7 @@ db.accounts.insertMany([
       "password": "4cab2a2db6a3c31b01d804def28276e6",
       "createdDate": new ISODate(),
       "cpf": '04467539638',
-      "telefone":   '5511997789130',
+      "phone":   '5511997789130',
       "address": {
           "street": "Via de Pedestre Salvatore Patti",
           "number": "245",
