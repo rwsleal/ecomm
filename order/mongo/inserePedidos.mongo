@@ -1,124 +1,61 @@
-// use ecomm-account;
-
-// const clientExists = db.accounts.findOne(
-//     {
-//         "email": "lorenamendes@email.com"
-//     },
-//     {
-//         _id: 0,
-//         nome: 1,
-//         email: 1,
-//         cpf: 1,
-//         telefone: 1
-//     }
-// );
-
-// use ecomm-product;
-
-// const productExists = db.products.find(
-//     {
-//         "nome": "IPhone 13 Pro"
-//     },
-//     {
-//         "_id": 0,
-//         "produto": 1,
-//         "preco_unitario": 1
-//     }
-// );
-
-// use ecomm-account;
-
-// const createOrder = (email, products) => {
-//     const clientExists = db.accounts.findOne(
-//         {
-//             "email": email
-//         },
-//         {
-//             _id: 0,
-//             nome: 1,
-//             email: 1,
-//             cpf: 1,
-//             telefone: 1
-//         }
-//     );
-
-// use ecomm-product
-
-//     const productsList = products.map((product) => {
-//         const productExists = db.products.findOne(
-//             {
-//                 $and: [ { "nome": product.produto }, { "quantidade": { $gte: product.quantidade }}]
-//             },
-//             {
-//                 "_id": 0,
-//                 "produto": 1,
-//                 "preco_unitario": 1
-//             }
-//         );
-//     })
-    
-//     if (!productExists) {
-//         return null
-//     }
-
-//     return { ...productExists, quantidade: product.quantidade, desconto: product.desconto }
-// };
-
-// if (clientExists && !productsList.includes(null)) {
-//     use ecomm-order;
-
-//     db.orders.insertMany({
-//         "dataCriação": newISODate(),
-//         "cliente": clientExists.nome,
-//         "enderecoEntrega": {
-//             "logradouro": "Rua Ademar de Moraes Seckler",
-//             "numero": "38",
-//             "complemento": "S/N",
-//             "bairro": "Jardim Moacyr Arruda",
-//             "cep": "13338260",
-//             "cidade": "Indaiatuba",
-//             "estado": "SP",
-//         },
-//         "itemsDoPedido": productsList,
-//         "valorTotal": productList.reduce((acc, product) => {
-//             const { quantidade, desconto, preco_unitario } = product;
-//             const preco = quantidade * (preço_unitário * desconto)
-//             return acc + preco;
-//         })
-//     })
-// }
-
-// createOrder("lorenamendes@email.com", { produto: "Notebook Samsung", quantidade: "2" }, 0,1);
-
-// // dataCriação: string;
-// // cliente: {
-// //     nome: string;
-// //     email: string
-// //     cpf: string;
-// //     telefone: string;
-// // }
-
-// // *cliente deverá existir previamente no sistema
-
-// // endereçoEntrega: {
-// //     rua: string;
-// //     número: string;
-// //     complemento: string;
-// //     bairro: string;
-// //     CEP: string;
-// //     cidade: string;
-// //     estado: string;
-// // }
-
-// // itemsDoPedido: [
-// //     {
-// //         produto: string;
-// //         quantidade: integer;
-// //         desconto: numberDecimal;
-// //         precoUnitário: numberDecimal;
-// //     }
-// // ]
-
-// // valorTotal: numberDecimal;
-
-// // * valorTotal deverá ser o montante obtido por uma função que vai percorrer o array itemsDoPedido, acessar cada item e retornar a quantidade * (preçoUnitário * desconto);
+db.orders.insertMany([
+  {
+    "createdDate": new ISODate(),
+    "client": "Lorena Alana Mendes",
+    "email": "lorenamendes@email.com",
+    "deliveryAddress": {
+        "street": "Rua Ademar de Moraes Seckler",
+        "number": "38",
+        "complement": "S/N",
+        "district": "Jardim Moacyr Arruda",
+        "cep": "13338260",
+        "city": "Indaiatuba",
+        "state": "SP",
+    },
+    "products": [
+        {
+              "_id":{
+               "$oid": "63c9c3f8db66202eaf4f5571"
+            },
+            "product": "iPhone 13 Pro",
+            "quantity": 2,
+            "unitPrice": NumberDecimal("9176.00"),
+            "discount": NumberDecimal("917.60"),
+        },
+        {
+            "_id": {
+            "$oid": "63c9c3f8db66202eaf4f5576"
+            },
+            "product": "Galaxy S22 Ultra",
+            "quantity": 1,
+            "unitPrice": NumberDecimal("8549.10"),
+            "discount":  NumberDecimal("854.91"),
+        }
+    ]
+  },
+  {
+    "createdDate": new ISODate(),
+    "client": "Nelson Henrique da Paz",
+    "email": "nelsonpaz@email.com",
+    "deliveryAddress": {
+        "street": "Rua Nair do Prado Manso",
+        "number": "999",
+        "complement": "S/N",
+        "district": "Barbosa Lage",
+        "cep": "36085040",
+        "city": "Juiz de Fora",
+        "state": "MG",
+    },
+    "products": [
+        {
+              "_id": {
+               "$oid": "63c9c3f8db66202eaf4f5574"
+            },
+            "product": "Jogo de pneus",
+            "quantity": 1,
+            "unitPrice": NumberDecimal("1276.79"),
+            "discount": NumberDecimal("127.68"),
+        }
+    ]
+  }
+]);
