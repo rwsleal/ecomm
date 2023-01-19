@@ -1,4 +1,4 @@
 db.products.updateMany(
-    { "categoria.nome": "LIVROS" },
-    { $set: { quantidade: 0 }}
+    { "categorie.name": "LIVROS" },
+    { $set: { quantity: 0 }}
 );
