@@ -1,53 +1,53 @@
 db.accounts.insertMany([
   {
-    "nome": "Lorena Alana Mendes",
+    "name": "Lorena Alana Mendes",
     "email": "lorenamendes@email.com", 
-    "senha": "4cab2a2db6a3c31b01d804def28276e6",
+    "password": "4cab2a2db6a3c31b01d804def28276e6",
     "createdDate": new ISODate(),
     "cpf": '36391181896',
     "telefone":  '5583988939542',
-    "endereco": {
-        "logradouro": "Rua Agenor Marinho de Souza",
-        "numero": "485",
+    "address": {
+        "street": "Rua Agenor Marinho de Souza",
+        "number": "485",
         "complemento": "S/N",
-        "bairro": "Jardim Cidade Universitaria",
+        "district": "Jardim Cidade Universitaria",
         "cep": "58052180",
-        "cidade": "Joao Pessoa",
-        "estado": "PB",
+        "city": "Joao Pessoa",
+        "state": "PB",
     }
   },
     {
-    "nome": "Nelson Henrique da Paz",
-    "email": "nelsonpaz@email.com", 
-    "senha": "4cab2a2db6a3c31b01d804def28276e6",
-    "createdDate": new ISODate(),
-    "cpf": '35751722264"',
-    "telefone":   '5532981820900',
-    "endereco": {
-        "logradouro": "Rua Nair do Prado Manso",
-        "numero": "999",
-        "complemento": "S/N",
-        "bairro": "Barbosa Lage",
-        "cep": "36085040",
-        "cidade": "Juiz de Fora",
-        "estado": "MG",
-    }
+      "name": "Nelson Henrique da Paz",
+      "email": "nelsonpaz@email.com", 
+      "password": "4cab2a2db6a3c31b01d804def28276e6",
+      "createdDate": new ISODate(),
+      "cpf": '35751722264"',
+      "telefone":   '5532981820900',
+      "address": {
+          "street": "Rua Nair do Prado Manso",
+          "number": "999",
+          "complemento": "S/N",
+          "district": "Barbosa Lage",
+          "cep": "36085040",
+          "city": "Juiz de Fora",
+          "state": "MG",
+      }
   },
     {
-    "nome": "Laura Malu Araújo",
-    "email": "lauraaraujo@email.com", 
-    "senha": "4cab2a2db6a3c31b01d804def28276e6",
-    "createdDate": new ISODate(),
-    "cpf": '04467539638',
-    "telefone":   '5511997789130',
-        "endereco": {
-        "logradouro": "Via de Pedestre Salvatore Patti",
-        "numero": "245",
-        "bairro": "Vila das Mercês",
-        "complemento": "S/N",
-        "cep": "04165065",
-        "cidade": "Sao Paulo",
-        "uf": "SP",
-    }
+      "name": "Laura Malu Araújo",
+      "email": "lauraaraujo@email.com", 
+      "password": "4cab2a2db6a3c31b01d804def28276e6",
+      "createdDate": new ISODate(),
+      "cpf": '04467539638',
+      "telefone":   '5511997789130',
+      "address": {
+          "street": "Via de Pedestre Salvatore Patti",
+          "number": "245",
+          "complemento": "S/N",
+          "district": "Vila das Mercês",
+          "cep": "04165065",
+          "city": "Sao Paulo",
+          "state": "SP",
+      }
   }
 ])
