@@ -1,0 +1,49 @@
+db.orders.aggregate(
+    [
+        {
+            $match: {
+                client: "Lorena Alana Mendes"
+            }
+        },
+        {
+            $unwind: "$products"
+        },
+        {
+            $addFields: {
+                total: {
+                    $multiply: ["$products.quantity", "$products.unitPrice"]
+                },
+                totalDiscount: {
+                    $multiply: ["$products.quantity","$products.discount"]
+                }
+            }
+        },
+        {
+            $group: {
+                _id: "$_id",
+                products: {
+                    $push: "$products.quantity"
+                },
+                total: {
+                    $push: "$total"
+                },
+                totalDiscount: {
+                    $push: "$totalDiscount"
+                }
+            }
+        },
+        {
+            $project: {
+                products: {
+                    $sum: "$products"
+                },
+                total: {
+                    $sum: "$total"
+                },
+                totalDiscount: {
+                    $sum: "$totalDiscount"
+                }
+            }
+        }
+    ]
+)
