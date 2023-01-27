@@ -136,3 +136,72 @@ paths:
                   $ref: "#/components/schemas/Category"
         '404':
           $ref: '#/components/responses/NotFound'
+  /api/admin/categories/{id}:
+    put:
+      tags:
+        - admin
+        - categories
+      summary: update category by id
+      description: updates all categories fields by its id
+      parameters:
+      - name: id
+        in: path
+        description: category id
+        required: true
+        schema:
+          type: object
+          properties:
+            $id:
+              type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Category"
+      responses:
+        '200':
+          $ref: '#/components/responses/Updated'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      tags:
+        - admin
+        - categories
+      summary: update category status by id
+      description: updates a category status by its id
+      parameters:
+      - name: id
+        in: path
+        description: category id
+        required: true
+        schema:
+          type: object
+          properties:
+            $id:
+              type: string
+      responses:
+        '200':
+          $ref: '#/components/responses/Updated'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      tags:
+        - admin
+        - categories
+      summary: remove category by id
+      description: removes a category by its id
+      parameters:
+      - name: id
+        in: path
+        description: category id
+        required: true
+        schema:
+          type: object
+          properties:
+            $id:
+              type: string
+      responses:
+        '204':
+          $ref: '#/components/responses/Deleted'
+        '404':
+          $ref: '#/components/responses/NotFound'
