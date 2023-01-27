@@ -205,3 +205,116 @@ paths:
           $ref: '#/components/responses/Deleted'
         '404':
           $ref: '#/components/responses/NotFound'
+  /api/products:
+    get:
+      tags:
+        - products
+      summary: get all products
+      description: lists all the products
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Product"
+        '404':
+          $ref: '#/components/responses/NotFound'
+          
+  /api/products/{id}:
+    get:
+      tags:
+        - products
+      summary: get a product by id
+      description: find a specific product
+      parameters:
+        - name: id
+          in: path
+          description: product id
+          required: true
+          schema:
+            type: object
+            properties:
+              $id:
+                type: string
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+        '404':
+          $ref: '#/components/responses/NotFound'
+  
+  /api/admin/products:
+    post:
+      tags:
+        - admin
+        - products
+      summary: add a new product
+      description: creates a new product
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+      responses:
+        '201':
+          description: created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+  
+  /api/admin/products/{id}:
+    put:
+      tags:
+        - admin
+        - products
+      summary: update product by id
+      description:  updates all product fields by its id
+      parameters:
+        - name: id
+          in: path
+          description: product id
+          required: true
+          schema:
+            type: object
+            properties:
+              $id:
+                type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Product"
+      responses:
+        '200':
+          $ref: '#/components/responses/Updated'
+        '404':
+          $ref: '#/components/responses/NotFound'
+          
+    delete:
+      tags:
+        - admin
+        - products
+      summary: remove product by id
+      description: removes a product by its id
+      parameters:
+        - name: id
+          in: path
+          description: product id
+          required: true
+          schema:
+            type: object
+            properties:
+              $id:
+                type: string
+      responses:
+        '204':
+          $ref: '#/components/responses/Deleted'
+        '404':
+          $ref: '#/components/responses/NotFound'
