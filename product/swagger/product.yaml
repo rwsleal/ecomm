@@ -318,3 +318,41 @@ paths:
           $ref: '#/components/responses/Deleted'
         '404':
           $ref: '#/components/responses/NotFound'
+  /api/products/filter:
+    get:
+      tags:
+        - products
+      summary: get products by filter
+      description: filter products based on query string
+      parameters:
+        - name: minPrice
+          in: query
+          description: filter products by minimum value
+          schema:
+            type: number
+        - name: maxPrice
+          in: query
+          description: filter products by maximum value
+          schema:
+            type: number
+        - name: category
+          in: query
+          description: filter products by their category
+          schema:
+            type: string
+        - name: quantityGreater
+          in: query
+          description: filter products by quantity greater than specified value
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: ok
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+        '400':
+          description: invalid fields
