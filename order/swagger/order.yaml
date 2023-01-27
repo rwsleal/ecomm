@@ -1,0 +1,146 @@
+openapi: 3.0.1
+info:
+  title: Ecomm Order
+  description: PagoNxt - Sprint 5 (Ecomm Order Swagger Documentation)
+  version: 0.1.0
+  termsOfService: http://swagger.io/terms/
+  contact:
+    name: Richard Leal
+    email: richard.leal@pagonxt.com
+  license:
+    name: "Lincença: GPLv3"
+    url: https://www.gnu.org/licenses/gpl-3.0.html
+
+components:
+  schemas:
+    Products:
+      type: object
+      properties:
+        id:
+          type: string
+        product:
+          type: string
+        quantity:
+          type: number
+          format: int64
+        unitPrice:
+          type: number
+          format: double
+        discount:
+          type: number
+          format: double
+    Order:
+      type: object
+      properties:
+        id:
+          type: string
+        createdDate:
+          type: string
+          format: date-time
+        client:
+          type: string
+        email:
+          type: string
+        deliveryAddress:
+          type: object
+          properties:
+            street:
+              type: string
+            number:
+              type: string
+            complement:
+              type: string
+            district:
+              type: string            
+            cep:
+              type: string
+            city:
+              type: string
+            state:
+              type: string
+        products:
+          type: array
+          items:
+            $ref: "#/components/schemas/Products"
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+      required:
+        - code
+        - message
+  responses:
+    Updated:
+      description: the specified resource was updated
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Order"
+    Deleted:
+      description: the specified resource was removed
+    NotFound:
+      description: the specified resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: the user does not have access to the specified resource
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    InternalServerError:
+      description: there was an internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+
+paths:
+  /api/orders/{id}:
+    get:
+      tags:
+        - orders
+      summary: get order by id
+      description: find a specific order
+      parameters:
+        - name: id
+          in: path
+          description: order id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ok
+          content:
+            application/json:
+              schema:
+                  $ref: "#/components/schemas/Order"
+        '404':
+          $ref: "#/components/responses/NotFound"
+  /api/admin/orders:
+    post:
+      tags:
+        - orders
+        - admin
+      summary: add a new order
+      description: creates a new order
+      requestBody:
+        content:
+          application/json:
+              schema:
+                $ref: "#/components/schemas/Order"
+      responses:
+        '201':
+          description: created
+          content:
+            application/json:
+              schema:
+                  $ref: "#/components/schemas/Order"
+        '401':
+          $ref: "#/components/responses/Unauthorized"
