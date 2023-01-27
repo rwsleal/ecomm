@@ -1,0 +1,89 @@
+openapi: 3.0.1
+info:
+  title: Ecomm Product
+  description: PagoNxt - Sprint 5
+  version: 0.1.0
+  termsOfService: http://swagger.io/terms/
+  contact:
+    name: Richard Leal
+    email: richard.leal@pagonxt.com
+  license:
+    name: "Lincença: GPLv3"
+    url: https://www.gnu.org/licenses/gpl-3.0.html
+    
+components:
+  schemas:
+    Category:
+      type: object
+      properties:
+        categoryId:
+          type: string
+        name:
+          type: string
+        status:
+          type: string
+    Product:
+      type: object
+      properties: 
+        product:
+          type: string
+        description:
+          type: string
+        slug:
+          type: string
+        unitPrice:
+          type: number
+        quantity:
+          type: integer
+        categoryId:
+          type: string
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+      required:
+        - code
+        - message
+  responses:
+    Updated:
+      description: the specified resource was updated
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Category"
+    Deleted:
+      description: the specified resource was removed
+    NotFound:
+      description: the specified resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    InternalServerError:
+      description: there was an internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+paths:
+  /api/categories:
+    get:
+      tags:
+        - categories
+      summary: get all categories
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Category'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
