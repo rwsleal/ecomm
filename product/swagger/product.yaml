@@ -10,7 +10,7 @@ info:
   license:
     name: "Lincença: GPLv3"
     url: https://www.gnu.org/licenses/gpl-3.0.html
-    
+
 components:
   schemas:
     Category:
@@ -87,3 +87,25 @@ paths:
           $ref: '#/components/responses/NotFound'
         '500':
           $ref: '#/components/responses/InternalServerError'
+  /api/admin/categories:
+    post:
+      tags:
+        - admin
+        - categories
+      summary: add a new category
+      description: creates a new category
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: 
+                name:
+                  type: string
+      responses:
+        '201':
+          description: created
+          content:
+            application/json:
+              schema:
+                  $ref: "#/components/schemas/Category"
