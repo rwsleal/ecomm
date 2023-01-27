@@ -1,1 +1,1 @@
-db.products.find({quantidade: {$gte: 3}}, {produto: 1, quantidade: 1});
+db.products.find({quantity: {$gte: 3}}, {product: 1, quantity: 1});

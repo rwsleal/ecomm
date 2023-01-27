@@ -3,10 +3,10 @@
 use ecomm-product
 
 db.products.find({}).forEach((product) => {
-    let category = db.categories.findOne({"nome": product.categoria});
+    let category = db.categories.findOne({"name": product.categorie});
 
-    product.categoria = {
-        nome: category.nome,
+    product.categorie = {
+        name: category.name,
         _id: category._id
     };
 

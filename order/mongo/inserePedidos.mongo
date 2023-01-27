@@ -1,0 +1,61 @@
+db.orders.insertMany([
+  {
+    "createdDate": new ISODate(),
+    "client": "Lorena Alana Mendes",
+    "email": "lorenamendes@email.com",
+    "deliveryAddress": {
+        "street": "Rua Ademar de Moraes Seckler",
+        "number": "38",
+        "complement": "S/N",
+        "district": "Jardim Moacyr Arruda",
+        "cep": "13338260",
+        "city": "Indaiatuba",
+        "state": "SP",
+    },
+    "products": [
+        {
+              "_id":{
+               "$oid": "63c9c3f8db66202eaf4f5571"
+            },
+            "product": "iPhone 13 Pro",
+            "quantity": 2,
+            "unitPrice": NumberDecimal("9176.00"),
+            "discount": NumberDecimal("917.60"),
+        },
+        {
+            "_id": {
+            "$oid": "63c9c3f8db66202eaf4f5576"
+            },
+            "product": "Galaxy S22 Ultra",
+            "quantity": 1,
+            "unitPrice": NumberDecimal("8549.10"),
+            "discount":  NumberDecimal("854.91"),
+        }
+    ]
+  },
+  {
+    "createdDate": new ISODate(),
+    "client": "Nelson Henrique da Paz",
+    "email": "nelsonpaz@email.com",
+    "deliveryAddress": {
+        "street": "Rua Nair do Prado Manso",
+        "number": "999",
+        "complement": "S/N",
+        "district": "Barbosa Lage",
+        "cep": "36085040",
+        "city": "Juiz de Fora",
+        "state": "MG",
+    },
+    "products": [
+        {
+              "_id": {
+               "$oid": "63c9c3f8db66202eaf4f5574"
+            },
+            "product": "Jogo de pneus",
+            "quantity": 1,
+            "unitPrice": NumberDecimal("1276.79"),
+            "discount": NumberDecimal("127.68"),
+        }
+    ]
+  }
+]);

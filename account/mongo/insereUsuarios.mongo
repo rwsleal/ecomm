@@ -1,0 +1,53 @@
+db.accounts.insertMany([
+  {
+    "name": "Lorena Alana Mendes",
+    "email": "lorenamendes@email.com", 
+    "password": "4cab2a2db6a3c31b01d804def28276e6",
+    "createdDate": new ISODate(),
+    "cpf": '36391181896',
+    "phone":  '5583988939542',
+    "address": {
+        "street": "Rua Agenor Marinho de Souza",
+        "number": "485",
+        "complemento": "S/N",
+        "district": "Jardim Cidade Universitaria",
+        "cep": "58052180",
+        "city": "Joao Pessoa",
+        "state": "PB",
+    }
+  },
+    {
+      "name": "Nelson Henrique da Paz",
+      "email": "nelsonpaz@email.com", 
+      "password": "4cab2a2db6a3c31b01d804def28276e6",
+      "createdDate": new ISODate(),
+      "cpf": '35751722264"',
+      "phone":   '5532981820900',
+      "address": {
+          "street": "Rua Nair do Prado Manso",
+          "number": "999",
+          "complemento": "S/N",
+          "district": "Barbosa Lage",
+          "cep": "36085040",
+          "city": "Juiz de Fora",
+          "state": "MG",
+      }
+  },
+    {
+      "name": "Laura Malu Araújo",
+      "email": "lauraaraujo@email.com", 
+      "password": "4cab2a2db6a3c31b01d804def28276e6",
+      "createdDate": new ISODate(),
+      "cpf": '04467539638',
+      "phone":   '5511997789130',
+      "address": {
+          "street": "Via de Pedestre Salvatore Patti",
+          "number": "245",
+          "complemento": "S/N",
+          "district": "Vila das Mercês",
+          "cep": "04165065",
+          "city": "Sao Paulo",
+          "state": "SP",
+      }
+  }
+])

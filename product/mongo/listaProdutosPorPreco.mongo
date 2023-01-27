@@ -1,6 +1,6 @@
 db.products.find({$and: [
-    {preco_unitario: { $gte: 1000 }},
-    {preco_unitario: { $lte: 2000 }}
+    {unitPrice: { $gte: 1000 }},
+    {unitPrice: { $lte: 2000 }}
   ]},
-  {produto: 1, preco_unitario: 1}
+  {product: 1, unitPrice: 1}
 )
