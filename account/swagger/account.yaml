@@ -89,28 +89,10 @@ components:
             $ref: '#/components/schemas/Error'
 
 paths:
-  /api/accounts:
-    get:
-      tags:
-        - accounts
-      summary: get all accounts
-      description: List all accounts
-      responses:
-        '200':
-          description: ok
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/Account"
-        '404':
-          $ref: "#/components/responses/NotFound"
   /api/admin/accounts:
     post:
       tags:
         - accounts
-        - admin
       summary: add an account
       description: create a new account
       requestBody:
@@ -153,7 +135,6 @@ paths:
     put:
       tags:
         - accounts
-        - admin
       summary: update account by id
       description: updates all account fields by its id
       parameters:
@@ -182,7 +163,6 @@ paths:
     delete:
       tags:
         - accounts
-        - admin
       summary: remove account by id
       description: removes an account by its id
       parameters:
