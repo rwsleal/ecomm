@@ -1,0 +1,351 @@
+openapi: 3.0.1
+info:
+  title: Ecomm Product
+  description: PagoNxt - Sprint 5
+  version: 0.1.0
+  termsOfService: http://swagger.io/terms/
+  contact:
+    name: Richard Leal
+    email: richard.leal@pagonxt.com
+  license:
+    name: "Lincença: GPLv3"
+    url: https://www.gnu.org/licenses/gpl-3.0.html
+
+components:
+  schemas:
+    Category:
+      type: object
+      properties:
+        categoryId:
+          type: string
+        name:
+          type: string
+        status:
+          type: string
+    Product:
+      type: object
+      properties: 
+        product:
+          type: string
+        description:
+          type: string
+        slug:
+          type: string
+        unitPrice:
+          type: number
+        quantity:
+          type: integer
+        categoryId:
+          type: string
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+      required:
+        - code
+        - message
+  responses:
+    Updated:
+      description: the specified resource was updated
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Category"
+    Deleted:
+      description: the specified resource was removed
+    NotFound:
+      description: the specified resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    InternalServerError:
+      description: there was an internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+paths:
+  /api/categories:
+    get:
+      tags:
+        - categories
+      summary: get all categories
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Category'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /api/admin/categories:
+    post:
+      tags:
+        - categories
+      summary: add a new category
+      description: creates a new category
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: 
+                name:
+                  type: string
+      responses:
+        '201':
+          description: created
+          content:
+            application/json:
+              schema:
+                  $ref: "#/components/schemas/Category"
+  /api/categories/{id}:
+    get:
+      tags:
+        - categories
+      summary: get category by id
+      description: find a specific category
+      parameters:
+        - name: id
+          in: path
+          description: category id
+          required: true
+          schema:
+            type: object
+            properties:
+              $id:
+                type: string
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Category"
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /api/admin/categories/{id}:
+    put:
+      tags:
+        - categories
+      summary: update category by id
+      description: updates all categories fields by its id
+      parameters:
+      - name: id
+        in: path
+        description: category id
+        required: true
+        schema:
+          type: object
+          properties:
+            $id:
+              type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Category"
+      responses:
+        '200':
+          $ref: '#/components/responses/Updated'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      tags:
+        - categories
+      summary: update category status by id
+      description: updates a category status by its id
+      parameters:
+      - name: id
+        in: path
+        description: category id
+        required: true
+        schema:
+          type: object
+          properties:
+            $id:
+              type: string
+      responses:
+        '200':
+          $ref: '#/components/responses/Updated'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      tags:
+        - categories
+      summary: remove category by id
+      description: removes a category by its id
+      parameters:
+      - name: id
+        in: path
+        description: category id
+        required: true
+        schema:
+          type: object
+          properties:
+            $id:
+              type: string
+      responses:
+        '204':
+          $ref: '#/components/responses/Deleted'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /api/products:
+    get:
+      tags:
+        - products
+      summary: get all products
+      description: lists all the products
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Product"
+        '404':
+          $ref: '#/components/responses/NotFound'
+          
+  /api/products/{id}:
+    get:
+      tags:
+        - products
+      summary: get a product by id
+      description: find a specific product
+      parameters:
+        - name: id
+          in: path
+          description: product id
+          required: true
+          schema:
+            type: object
+            properties:
+              $id:
+                type: string
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+        '404':
+          $ref: '#/components/responses/NotFound'
+  
+  /api/admin/products:
+    post:
+      tags:
+        - products
+      summary: add a new product
+      description: creates a new product
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+      responses:
+        '201':
+          description: created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+  
+  /api/admin/products/{id}:
+    put:
+      tags:
+        - products
+      summary: update product by id
+      description:  updates all product fields by its id
+      parameters:
+        - name: id
+          in: path
+          description: product id
+          required: true
+          schema:
+            type: object
+            properties:
+              $id:
+                type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Product"
+      responses:
+        '200':
+          $ref: '#/components/responses/Updated'
+        '404':
+          $ref: '#/components/responses/NotFound'
+          
+    delete:
+      tags:
+        - products
+      summary: remove product by id
+      description: removes a product by its id
+      parameters:
+        - name: id
+          in: path
+          description: product id
+          required: true
+          schema:
+            type: object
+            properties:
+              $id:
+                type: string
+      responses:
+        '204':
+          $ref: '#/components/responses/Deleted'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /api/products/filter:
+    get:
+      tags:
+        - products
+      summary: get products by filter
+      description: filter products based on query string
+      parameters:
+        - name: minPrice
+          in: query
+          description: filter products by minimum value
+          schema:
+            type: number
+        - name: maxPrice
+          in: query
+          description: filter products by maximum value
+          schema:
+            type: number
+        - name: category
+          in: query
+          description: filter products by their category
+          schema:
+            type: string
+        - name: quantityGreater
+          in: query
+          description: filter products by quantity greater than specified value
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: ok
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+        '400':
+          description: invalid fields

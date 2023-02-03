@@ -1,0 +1,179 @@
+openapi: 3.0.1
+info:
+  title: Ecomm Account
+  description: PagoNxt - Sprint 5
+  version: 0.1.0
+  termsOfService: http://swagger.io/terms/
+  contact:
+    name: Richard Leal
+    email: richard.leal@pagonxt.com
+  license:
+    name: "Lincença: GPLv3"
+    url: https://www.gnu.org/licenses/gpl-3.0.html
+
+components:
+  schemas:
+    Account:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+          format: password
+        createdDate:
+          type: string
+          format: date-time
+        cpf:
+          type: string
+        phone:
+          type: string
+        address:
+          type: object
+          properties:
+            street:
+              type: string
+            number:
+              type: string
+            complement:
+              type: string
+            district:
+              type: string            
+            cep:
+              type: string
+            city:
+              type: string
+            state:
+              type: string
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+      required:
+        - code
+        - message
+  responses:
+    Updated:
+      description: the specified resource was updated
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Account"
+    Deleted:
+      description: the specified resource was removed
+    NotFound:
+      description: the specified resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: the user does not have access to the specified resource
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    InternalServerError:
+      description: there was an internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+
+paths:
+  /api/admin/accounts:
+    post:
+      tags:
+        - accounts
+      summary: add an account
+      description: create a new account
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Account"
+      responses:
+        '201':
+          description: created
+          content:
+            application/json:
+              schema:
+                  $ref: "#/components/schemas/Account"
+        '401':
+          $ref: "#/components/responses/Unauthorized"
+  /api/accounts/{id}:
+    get:
+      tags:
+        - accounts
+      summary: get account by id
+      description: find a specific account
+      parameters:
+        - name: id
+          in: path
+          description: account id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ok
+          content:
+            application/json:
+              schema:
+                  $ref: "#/components/schemas/Account"
+        '404':
+          $ref: "#/components/responses/NotFound"
+  /api/admin/accounts/{id}:
+    put:
+      tags:
+        - accounts
+      summary: update account by id
+      description: updates all account fields by its id
+      parameters:
+      - name: id
+        in: path
+        description: account id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+                $ref: "#/components/schemas/Account"
+      responses:
+        '200':
+          description: ok
+          content:
+            application/json:
+              schema:
+                  $ref: "#/components/schemas/Account"
+        '401':
+          $ref: "#/components/responses/Unauthorized"
+        '404':
+          $ref: "#/components/responses/NotFound"
+    delete:
+      tags:
+        - accounts
+      summary: remove account by id
+      description: removes an account by its id
+      parameters:
+      - name: id
+        in: path
+        description: account id
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          $ref: '#/components/responses/Deleted'
+        '404':
+          $ref: '#/components/responses/NotFound'
