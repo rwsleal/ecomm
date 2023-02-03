@@ -123,11 +123,10 @@ paths:
                   $ref: "#/components/schemas/Order"
         '404':
           $ref: "#/components/responses/NotFound"
-  /api/admin/orders:
+  /api/orders:
     post:
       tags:
         - orders
-        - admin
       summary: add a new order
       description: creates a new order
       requestBody:
