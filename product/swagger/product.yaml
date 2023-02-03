@@ -90,7 +90,6 @@ paths:
   /api/admin/categories:
     post:
       tags:
-        - admin
         - categories
       summary: add a new category
       description: creates a new category
@@ -139,7 +138,6 @@ paths:
   /api/admin/categories/{id}:
     put:
       tags:
-        - admin
         - categories
       summary: update category by id
       description: updates all categories fields by its id
@@ -165,7 +163,6 @@ paths:
           $ref: '#/components/responses/NotFound'
     patch:
       tags:
-        - admin
         - categories
       summary: update category status by id
       description: updates a category status by its id
@@ -186,7 +183,6 @@ paths:
           $ref: '#/components/responses/NotFound'
     delete:
       tags:
-        - admin
         - categories
       summary: remove category by id
       description: removes a category by its id
@@ -252,7 +248,6 @@ paths:
   /api/admin/products:
     post:
       tags:
-        - admin
         - products
       summary: add a new product
       description: creates a new product
@@ -272,7 +267,6 @@ paths:
   /api/admin/products/{id}:
     put:
       tags:
-        - admin
         - products
       summary: update product by id
       description:  updates all product fields by its id
@@ -299,7 +293,6 @@ paths:
           
     delete:
       tags:
-        - admin
         - products
       summary: remove product by id
       description: removes a product by its id
