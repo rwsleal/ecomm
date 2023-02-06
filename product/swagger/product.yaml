@@ -35,8 +35,13 @@ components:
           type: number
         quantity:
           type: integer
-        categoryId:
-          type: string
+        category:
+          type: object
+          properties:
+            categoryId:
+              type: string
+            name:
+              type: string
     Error:
       type: object
       properties:
