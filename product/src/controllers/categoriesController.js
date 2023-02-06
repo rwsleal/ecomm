@@ -40,7 +40,7 @@ const remove = (req, res, next) => {
     const { id } = req.params;
 
     Category.findByIdAndDelete(id, (err) => {
-      if (!err) {
+      if (err) {
         next(err);
     } else {
         res.status(204).send({ message: 'Category successfully deleted' });

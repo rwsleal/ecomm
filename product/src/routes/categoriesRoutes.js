@@ -6,11 +6,13 @@ import { categorySchema } from '../joiSchemas/index.js';
 import 'express-async-errors';
 
 const router = express.Router();
+const adminEndpointById = '/admin/categories/:id';
 
 router
     .post('/admin/categories', validationHandler(categorySchema), categoriesController.create)
     .get('/categories/:id', categoriesController.getById)
-    .put('/admin/categories/:id', categoriesController.update)
-    .delete('/admin/categories/:id', categoriesController.remove);
+    .put(adminEndpointById, categoriesController.update)
+    .patch(adminEndpointById, categoriesController.update)
+    .delete(adminEndpointById, categoriesController.remove);
 
 export default router;
