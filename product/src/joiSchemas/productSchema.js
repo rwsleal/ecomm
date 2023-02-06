@@ -4,7 +4,7 @@ const categorySchema = Joi.object().keys({
     name: Joi.string().required().messages({
         'any.required': '400|category "name" is required',
     }),
-    _id: Joi.string().required().messages({
+    categoryId: Joi.string().required().messages({
         'any.required': '400|category "id" is required',
     }),
 });
@@ -12,9 +12,9 @@ const categorySchema = Joi.object().keys({
 export default Joi.object({
     product: Joi.string().min(4).pattern(/^[^0-9]/).required()
     .messages({
-        'any.required': '400|"name" is required',
-        'string.min': '422|"name" length must be at least 4 characters long',
-        'string.pattern.base': '422|"name" must not start with a number',
+        'any.required': '400|"product" is required',
+        'string.min': '422|"product" length must be at least 4 characters long',
+        'string.pattern.base': '422|"product" must not start with a number',
     }),
     description: Joi.string().required().messages({
         'any.required': '400|"description" is required',
