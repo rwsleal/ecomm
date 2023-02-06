@@ -2,14 +2,15 @@ import mongoose from 'mongoose';
 
 const categorySchema = new mongoose.Schema(
     {
+        _id: false,
         name: { type: String, required: true },
-        _id: { type: String, required: true },
+        categoryId: { type: String, required: true },
     },
 );
 
 const productSchema = new mongoose.Schema(
     {
-        name: { type: String, required: true },
+        product: { type: String, required: true },
         description: { type: String },
         slug: { type: String },
         unitPrice: { type: Number },
