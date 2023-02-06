@@ -36,4 +36,16 @@ const update = (req, res, next) => {
     });
   };
 
-export { create, getById, update };
+const remove = (req, res, next) => {
+    const { id } = req.params;
+
+    Category.findByIdAndDelete(id, (err) => {
+      if (!err) {
+        next(err);
+    } else {
+        res.status(204).send({ message: 'Category successfully deleted' });
+      }
+    });
+  };
+
+export { create, getById, update, remove };

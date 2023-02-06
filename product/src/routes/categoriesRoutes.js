@@ -10,6 +10,7 @@ const router = express.Router();
 router
     .post('/admin/categories', validationHandler(categorySchema), categoriesController.create)
     .get('/categories/:id', categoriesController.getById)
-    .put('/admin/categories/:id', categoriesController.update);
+    .put('/admin/categories/:id', categoriesController.update)
+    .delete('/admin/categories/:id', categoriesController.remove);
 
 export default router;
