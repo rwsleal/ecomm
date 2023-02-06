@@ -9,6 +9,7 @@ const router = express.Router();
 
 router
     .post('/admin/categories', validationHandler(categorySchema), categoriesController.create)
-    .get('/categories/:id', categoriesController.getById);
+    .get('/categories/:id', categoriesController.getById)
+    .put('/admin/categories/:id', categoriesController.update);
 
 export default router;

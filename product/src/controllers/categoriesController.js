@@ -23,4 +23,17 @@ const getById = (req, res, next) => {
         });
 };
 
-export { create, getById };
+const update = (req, res, next) => {
+    const { id } = req.params;
+
+    Category.findByIdAndUpdate(id, { $set: req.body }, { new: true }, (err, category) => {
+      if (err) {
+        next(err);
+    } else {
+        res.status(200).set('Location', `/admin/categories/${category.id}`)
+            .send({ message: 'Category successfully updated' });
+      }
+    });
+  };
+
+export { create, getById, update };
