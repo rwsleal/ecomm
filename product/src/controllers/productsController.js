@@ -16,4 +16,16 @@ const create = (req, res, next) => {
     });
 };
 
-export { getAll, create };
+const getById = (req, res, next) => {
+    const { id } = req.params;
+
+    Product.findById(id, (err, product) => {
+        if (err) {
+            next(err);
+          } else {
+            res.status(201).json(product);
+          }
+    });
+};
+
+export { getAll, create, getById };

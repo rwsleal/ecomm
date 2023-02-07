@@ -10,6 +10,7 @@ const router = express.Router();
 
 router
     .get('/products', productsController.getAll)
+    .get('/products/:id', productsController.getById)
     .post(
         '/admin/products',
         validationHandler(productSchema),
