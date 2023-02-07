@@ -4,4 +4,16 @@ const getAll = (_req, res) => {
     Account.find((_err, accounts) => res.status(200).json(accounts));
 };
 
-export { getAll };
+const getById = (req, res, next) => {
+    const { id } = req.params;
+
+    Account.findById(id, (err, account) => {
+        if (err) {
+            next(err);
+        } else {
+            res.status(201).json(account);
+        }
+    });
+};
+
+export { getAll, getById };
