@@ -22,10 +22,24 @@ const getById = (req, res, next) => {
     Product.findById(id, (err, product) => {
         if (err) {
             next(err);
-          } else {
+        } else {
             res.status(201).json(product);
-          }
+        }
     });
 };
 
-export { getAll, create, getById };
+const update = (req, res, next) => {
+    const { id } = req.params;
+
+    Product.findByIdAndUpdate(id, { $set: req.body }, { new: true }, (err, product) => {
+        if (err) {
+            next(err);
+        } else {
+            console.log(product);
+            res.status(200).set('Location', `/admin/products/${product.id}`)
+                .send({ message: 'product successfully updated' });
+        }
+    });
+};
+
+export { getAll, create, getById, update };

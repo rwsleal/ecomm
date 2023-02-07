@@ -11,6 +11,7 @@ const router = express.Router();
 router
     .get('/products', productsController.getAll)
     .get('/products/:id', productsController.getById)
+    .put('/admin/products/:id', productsController.update)
     .post(
         '/admin/products',
         validationHandler(productSchema),
