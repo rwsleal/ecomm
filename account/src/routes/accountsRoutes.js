@@ -10,5 +10,6 @@ const router = express.Router();
 router
     .get('/admin/accounts', accountsController.getAll)
     .get('/admin/accounts/:id', accountsController.getById)
-    .post('/admin/accounts', validationHandler(accountsSchema), accountsController.create);
+    .post('/admin/accounts', validationHandler(accountsSchema), accountsController.create)
+    .put('/admin/accounts/:id', validationHandler(accountsSchema), accountsController.update);
 export default router;

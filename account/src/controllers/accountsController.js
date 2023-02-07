@@ -28,4 +28,17 @@ const create = (req, res, next) => {
     });
 };
 
-export { getAll, getById, create };
+const update = (req, res, next) => {
+    const { id } = req.params;
+
+    Account.findByIdAndUpdate(id, { $set: req.body }, { new: true }, (err, account) => {
+        if (err) {
+            next(err);
+        } else {
+            res.status(200).set('Location', `/admin/accounts/${account.id}`)
+                .send({ message: 'account successfully updated' });
+        }
+    });
+};
+
+export { getAll, getById, create, update };
