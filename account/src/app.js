@@ -1,5 +1,6 @@
 import express from 'express';
 import db from './database/config/mongodbConnection.js';
+import accountsRoutes from './routes/index.js';
 import { errorHandler } from './middlewares/index.js';
 
 db.once('open', () => {
@@ -9,7 +10,7 @@ db.once('open', () => {
 const app = express();
 
 app.use(express.json());
-
+app.use(accountsRoutes);
 
 app.use(errorHandler);
 
