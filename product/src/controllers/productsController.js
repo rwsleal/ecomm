@@ -35,11 +35,22 @@ const update = (req, res, next) => {
         if (err) {
             next(err);
         } else {
-            console.log(product);
             res.status(200).set('Location', `/admin/products/${product.id}`)
                 .send({ message: 'product successfully updated' });
         }
     });
 };
 
-export { getAll, create, getById, update };
+const remove = (req, res, next) => {
+    const { id } = req.params;
+
+    Product.findByIdAndDelete(id, (err) => {
+        if (err) {
+            next(err);
+        } else {
+            res.status(204).json({ message: 'product successfully deleted' });
+        }
+    });
+};
+
+export { getAll, create, getById, update, remove };

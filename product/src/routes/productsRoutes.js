@@ -12,6 +12,7 @@ router
     .get('/products', productsController.getAll)
     .get('/products/:id', productsController.getById)
     .put('/admin/products/:id', productsController.update)
+    .delete('/admin/products/:id', productsController.remove)
     .post(
         '/admin/products',
         validationHandler(productSchema),
