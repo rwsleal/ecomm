@@ -6,10 +6,12 @@ import accountsSchema from '../joiSchemas/index.js';
 import 'express-async-errors';
 
 const router = express.Router();
+const adminEndpointById = '/admin/accounts/:id';
 
 router
     .get('/admin/accounts', accountsController.getAll)
-    .get('/admin/accounts/:id', accountsController.getById)
+    .get(adminEndpointById, accountsController.getById)
     .post('/admin/accounts', validationHandler(accountsSchema), accountsController.create)
-    .put('/admin/accounts/:id', validationHandler(accountsSchema), accountsController.update);
+    .put(adminEndpointById, validationHandler(accountsSchema), accountsController.update)
+    .delete(adminEndpointById, accountsController.remove);
 export default router;

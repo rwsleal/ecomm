@@ -41,4 +41,16 @@ const update = (req, res, next) => {
     });
 };
 
-export { getAll, getById, create, update };
+const remove = (req, res, next) => {
+    const { id } = req.params;
+
+    Account.findByIdAndDelete(id, (err) => {
+        if (err) {
+            next(err);
+        } else {
+            res.status(204).json({ message: 'account successfully deleted' });
+        }
+    });
+};
+
+export { getAll, getById, create, update, remove };
