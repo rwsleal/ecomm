@@ -3,10 +3,14 @@ services:
   product:
     build: ./product
     container_name: ecomm-product
+    ports:
+      - 3001:3001
   
   account:
     build: ./account
     container_name: ecomm-account
+    ports:
+      - 3002:3002
 
   mongo:
     container_name: mongo-ecomm
