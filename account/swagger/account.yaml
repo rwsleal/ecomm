@@ -131,6 +131,21 @@ paths:
                   $ref: "#/components/schemas/Account"
         '404':
           $ref: "#/components/responses/NotFound"
+  /api/accounts/:
+    get:
+      tags:
+        - accounts
+      summary: get all accounts
+      description: find all the accounts
+      responses:
+        '200':
+          description: ok
+          content:
+            application/json:
+              schema:
+                  $ref: "#/components/schemas/Account"
+        '404':
+          $ref: "#/components/responses/NotFound"
   /api/admin/accounts/{id}:
     put:
       tags:
