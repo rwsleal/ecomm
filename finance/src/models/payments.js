@@ -52,7 +52,9 @@ module.exports = (sequelize, _DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      Payments.hasOne(models.Invoices, {
+        foreignKey: 'payment_id',
+      });
     }
   }
   Payments.init(attributes, {
