@@ -19,9 +19,9 @@ const attributes = {
     field: 'card_number',
     type: DataTypes.STRING,
     allowNull: false,
-    validate: {
-      isCreditCard: true,
-    },
+    // validate: {
+    //   isCreditCard: true,
+    // },
   },
   expirationDate: {
     field: 'expiration_date',
@@ -39,7 +39,7 @@ const attributes = {
     type: DataTypes.STRING,
     allowNull: false,
     validate: {
-      isIn: [['CRIADO', 'CONFIRMADO', 'CANCELADO']],
+      isIn: [['CREATED', 'CONFIRMED', 'CANCELED']],
     },
   },
 };
@@ -58,6 +58,8 @@ module.exports = (sequelize, _DataTypes) => {
   Payments.init(attributes, {
     sequelize,
     modelName: 'Payments',
+    tableName: 'Payments',
+    underscored: true,
   });
   return Payments;
 };
