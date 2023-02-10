@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 const db = require('../models/index.js');
 
 const create = async (req, res) => {
@@ -23,9 +24,11 @@ const getById = async (req, res) => {
 
 const updateStatus = async (req, res) => {
     const { id } = req.params;
-    const { status } = req.body;
+    const { status, description } = req.body;
+    console.log(status);
 
     const getPaymentStatus = await db.Payments.findOne({ where: { id } });
+    console.log(getPaymentStatus.status);
     let statusCheck = true;
 
     switch (getPaymentStatus.status) {
@@ -38,9 +41,19 @@ const updateStatus = async (req, res) => {
 
     if (!statusCheck) throw new Error('422|"status" has an invalid value');
 
-    const payment = await db.Payments.update({ status }, { where: { id } });
+    db.sequelize.transaction(async (t) => {
+        const response = await db.Payments.update(
+            { status },
+            { where: { id } },
+            { transaction: t },
+        );
+        // eslint-disable-next-line camelcase
+        await db.Invoices.create({ description, payment_id: id }, { transaction: t });
 
-    return res.status(200).json(payment);
+        return response;
+    });
+    
+    return res.status(200).json({ message: `Payment ${status}` });
 };
 
 module.exports = { create, getById, updateStatus };
