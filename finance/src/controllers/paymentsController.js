@@ -2,7 +2,7 @@
 const db = require('../models/index.js');
 
 const create = async (req, res) => {
-    const payment = { ...req.body, status: 'CREATED' };
+    const payment = { ...req.body, cardNumber: Number(req.body.cardNumber), status: 'CREATED' };
 
     const { id, status } = await db.Payments.create(payment);
 

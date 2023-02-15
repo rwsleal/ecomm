@@ -19,9 +19,9 @@ const attributes = {
     field: 'card_number',
     type: DataTypes.STRING,
     allowNull: false,
-    // validate: {
-    //   isCreditCard: true,
-    // },
+    validate: {
+      isCreditCard: true,
+    },
   },
   expirationDate: {
     field: 'expiration_date',
