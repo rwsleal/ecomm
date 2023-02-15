@@ -1,6 +1,18 @@
 import Order from '../models/Order.js';
 import { fetchAccountById, fetchPaymentById } from '../helpers/fetchAPI.js';
 
+const create = (req, res, next) => {
+    const order = new Order({ ...req.body, status: 'DONE' });
+
+    order.save((err) => {
+        if (err) {
+            next(err);
+        } else {
+            res.status(200).json(order);
+        }
+    });
+};
+
 const confirm = async (req, res, next) => {
     const { id } = req.params;
     const { paymentId } = req.body;
@@ -18,4 +30,4 @@ const confirm = async (req, res, next) => {
     });
 };
 
-export { confirm };
+export { confirm, create };
