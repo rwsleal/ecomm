@@ -4,7 +4,7 @@ const { Model, DataTypes } = require('sequelize');
 const attributes = {
   description: {
     allowNull: false,
-    type: DataTypes.TEXT,
+    type: DataTypes.JSON,
   },
 };
 

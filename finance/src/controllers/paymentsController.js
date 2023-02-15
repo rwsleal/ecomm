@@ -25,10 +25,8 @@ const getById = async (req, res) => {
 const updateStatus = async (req, res) => {
     const { id } = req.params;
     const { status, description } = req.body;
-    console.log(status);
 
     const getPaymentStatus = await db.Payments.findOne({ where: { id } });
-    console.log(getPaymentStatus.status);
     let statusCheck = true;
 
     switch (getPaymentStatus.status) {
