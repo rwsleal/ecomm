@@ -20,11 +20,18 @@ const confirm = async (req, res, next) => {
     Order.findById(id, async (err, order) => {
         const { clientId, products } = order;
 
+        const invoiceProducts = products.map((item) => {
+            const { product, quantity, unitPrice, discount } = item;
+            const price = unitPrice - discount;
+
+            return { product, quantity, price };
+        });
+
         if (err) {
             next(err);
         } else {
             const { name, cpf, address } = await fetchAccountById(clientId);
-            const payload = { name, cpf, address, products };
+            const payload = { name, cpf, address, products: invoiceProducts };
             await fetchPaymentById(paymentId, payload);
         }
     });
