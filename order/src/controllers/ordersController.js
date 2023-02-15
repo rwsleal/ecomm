@@ -2,7 +2,7 @@ import Order from '../models/Order.js';
 import { fetchAccountById, fetchPaymentById } from '../helpers/fetchAPI.js';
 
 const create = (req, res, next) => {
-    const order = new Order({ ...req.body, status: 'DONE' });
+    const order = new Order({ ...req.body, status: 'DONE', createdDate: Date() });
 
     order.save((err) => {
         if (err) {
