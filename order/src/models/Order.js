@@ -16,10 +16,10 @@ const deliveryAddressSchema = new mongoose.Schema(
 const orderSchema = new mongoose.Schema(
     {
         createdDate: { type: Date },
-        client: { type: mongoose.Types.ObjectId, required: true },
-        email: { type: String, required: true },
+        clientId: { type: mongoose.Types.ObjectId, required: true },
         deliveryAddress: { type: deliveryAddressSchema, required: true },
         products: { type: Array, required: true },
+        status: { type: String, required: true },
     },
 );
 
