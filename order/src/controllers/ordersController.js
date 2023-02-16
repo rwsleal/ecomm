@@ -13,9 +13,18 @@ const create = (req, res, next) => {
     });
 };
 
+// eslint-disable-next-line max-lines-per-function
 const confirm = async (req, res, next) => {
     const { id } = req.params;
     const { paymentId } = req.body;
+
+    Order.findByIdAndUpdate(id, { $set: { status: 'PAID' } }, { new: true }, (err, order) => {
+        if (err) {
+            next(err);
+        } else {
+            res.status(200).json(order);
+        }
+    });
 
     Order.findById(id, async (err, order) => {
         const { clientId, products } = order;
