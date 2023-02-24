@@ -3,5 +3,5 @@ WORKDIR /app-node
 COPY package.json .
 RUN npm install
 COPY . .
-EXPOSE 3002
+EXPOSE 3003
 ENTRYPOINT npm start
