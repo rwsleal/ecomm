@@ -6,7 +6,7 @@ services:
     ports:
       - 3001:3001
     volumes:
-      - ./product/:/app/ecomm-product
+      - ./product/:/app/
     depends_on:
       - mongo
   
@@ -16,7 +16,7 @@ services:
     ports:
       - 3002:3002
     volumes:
-      - ./account/:/app/ecomm-account
+      - ./account/:/app/
     depends_on:
       - mongo
   
@@ -26,7 +26,7 @@ services:
     ports:
       - 3003:3003
     volumes:
-      - ./order/:/app/ecomm-order
+      - ./order/:/app/
     depends_on:
       - mongo
 
@@ -36,7 +36,7 @@ services:
     ports:
       - 3004:3004
     volumes:
-      - ./finance/:/app/ecomm-finance
+      - ./finance/:/app/
     depends_on:
       - mysql
 
