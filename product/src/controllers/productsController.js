@@ -6,7 +6,7 @@ const getAll = (_req, res) => {
 
 const create = (req, res, next) => {
     const product = new Product(req.body);
-
+    console.log(product);
     product.save((err) => {
         if (err) {
             next(err);
@@ -31,7 +31,7 @@ const getById = (req, res, next) => {
 const update = (req, res, next) => {
     const { id } = req.params;
 
-    Product.findByIdAndUpdate(id, { $set: req.body }, { new: true }, (err, product) => {
+    Product.findOneAndUpdate({ _id: id }, { $set: req.body }, { new: true }, (err, product) => {
         if (err) {
             next(err);
         } else {
