@@ -19,11 +19,11 @@ const create = (req, res, next) => {
 const getById = (req, res, next) => {
     const { id } = req.params;
 
-    Product.findById(id, (err, product) => {
+    Product.findOne({ _id: id }, (err, product) => {
         if (err) {
             next(err);
         } else {
-            res.status(201).json(product);
+            res.status(200).json(product);
         }
     });
 };
