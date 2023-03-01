@@ -6,7 +6,6 @@ const getAll = (_req, res) => {
 
 const create = (req, res, next) => {
     const product = new Product(req.body);
-    console.log(product);
     product.save((err) => {
         if (err) {
             next(err);
@@ -36,7 +35,7 @@ const update = (req, res, next) => {
             next(err);
         } else {
             res.status(200).set('Location', `/admin/products/${product.id}`)
-                .send({ message: 'product successfully updated' });
+                .send({ message: 'Product successfully updated' });
         }
     });
 };
@@ -44,11 +43,11 @@ const update = (req, res, next) => {
 const remove = (req, res, next) => {
     const { id } = req.params;
 
-    Product.findByIdAndDelete(id, (err) => {
+    Product.findOneAndRemove({ _id: id }, (err) => {
         if (err) {
             next(err);
         } else {
-            res.status(204).json({ message: 'product successfully deleted' });
+            res.status(204).end();
         }
     });
 };
