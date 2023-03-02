@@ -39,7 +39,7 @@ const update = (req, res, next) => {
 const remove = (req, res, next) => {
     const { id } = req.params;
 
-    Category.findByIdAndDelete(id, (err) => {
+    Category.findOneAndRemove({ id }, (err) => {
       if (err) {
         next(err);
     } else {
