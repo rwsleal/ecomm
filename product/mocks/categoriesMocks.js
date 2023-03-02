@@ -5,4 +5,9 @@ const categoryMock = {
     status: 'ATIVA',
 };
 
-export { categoryMock };
+const postCategoryMock = {
+    name: 'INFORMÁTICA',
+    status: 'ATIVA',
+};
+
+export { categoryMock, postCategoryMock };

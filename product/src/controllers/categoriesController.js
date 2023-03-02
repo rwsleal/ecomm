@@ -1,11 +1,11 @@
 import Category from '../models/Category.js';
 
-const create = (req, res) => {
+const create = (req, res, next) => {
     const category = new Category(req.body);
 
     category.save((err) => {
         if (err) {
-            res.status(500).send({ message: err.message });
+            next(err);
         } else {
             res.status(201).json(category);
         }
