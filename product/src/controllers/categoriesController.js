@@ -14,11 +14,11 @@ const create = (req, res) => {
 
 const getById = (req, res, next) => {
     const { id } = req.params;
-        Category.findById(id, (err, category) => {
+        Category.findOne({ id }, (err, category) => {
             if (err) {
                 next(err);
               } else {
-                res.status(201).json(category);
+                res.status(200).json(category);
               }
         });
 };
