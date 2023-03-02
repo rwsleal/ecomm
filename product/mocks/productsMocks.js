@@ -1,3 +1,4 @@
+/* eslint-disable sonarjs/no-duplicate-string */
 const allProductsMock = [        
     {      
       product: 'Notebook Samsung',
@@ -19,5 +20,25 @@ const allProductsMock = [
     },
 ];
 
-// eslint-disable-next-line import/prefer-default-export
-export { allProductsMock };
+const productToBeCreatedMock = {      
+  product: 'Notebook Samsung',
+  description: 'Samsung Book Core i5-1135G7, 8G, 256GB SSD, Iris Xe, 15.6"FHD, W11 Cinza',
+  slug: 'notebook-samsung',
+  unitPrice: 3523,
+  quantity: 1,
+  category: { name: 'INFORMÁTICA', categoryId: '63c9c09806ffd20fd4bdea6c' },
+};
+
+const productWithoutCategoryMock = {      
+  product: 'Notebook Samsung',
+  description: 'Samsung Book Core i5-1135G7, 8G, 256GB SSD, Iris Xe, 15.6"FHD, W11 Cinza',
+  slug: 'notebook-samsung',
+  unitPrice: 3523,
+  quantity: 1,
+};
+
+export { 
+  allProductsMock,
+  productToBeCreatedMock,
+  productWithoutCategoryMock,
+};

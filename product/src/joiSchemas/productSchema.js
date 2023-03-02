@@ -5,7 +5,7 @@ const categorySchema = Joi.object().keys({
         'any.required': '400|category "name" is required',
     }),
     categoryId: Joi.string().required().messages({
-        'any.required': '400|category "id" is required',
+        'any.required': '400|"categoryId" is required',
     }),
 });
 
