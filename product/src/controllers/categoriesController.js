@@ -26,7 +26,7 @@ const getById = (req, res, next) => {
 const update = (req, res, next) => {
     const { id } = req.params;
 
-    Category.findByIdAndUpdate(id, { $set: req.body }, { new: true }, (err, category) => {
+    Category.findOneAndUpdate({ id }, { $set: req.body }, { new: true }, (err, category) => {
       if (err) {
         next(err);
     } else {
