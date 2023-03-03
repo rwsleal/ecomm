@@ -1,3 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 import * as fs from 'fs';
 
 const accounts = JSON.parse(fs.readFileSync('./src/use-case/accounts.json'));
@@ -17,7 +18,7 @@ const createUserAddressUseCase = (email, address) => {
         return accounts.some((user) => user.email === email && user.address === address);
     }
 
-    return false
-}
+    return false;
+};
 
-export { createUserAddressUseCase }
+export { createUserAddressUseCase };

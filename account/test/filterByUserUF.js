@@ -1,6 +1,6 @@
-import { createUserUseCase } from "../src/use-case/createUserAccount.js";
-import { createUserAddressUseCase } from "../src/use-case/createUserAddress.js";
-import { filterByUserUFUseCase } from "../src/use-case/filterByUserUF.js";
+import { createUserUseCase } from '../src/use-case/createUserAccount.js';
+import { createUserAddressUseCase } from '../src/use-case/createUserAddress.js';
+import { filterByUserUFUseCase } from '../src/use-case/filterByUserUF.js';
 
 const usersToBeCreated = [
     ['Josué Lima', 'josuelima@email.com', 'senhaDoJosue'],
@@ -10,14 +10,14 @@ const usersToBeCreated = [
 ];
 
 const usersAdresses = [
-    ['marcelorosa@email.com', { uf: 'MG'}],
-    ['samuelfreitas@email.com', { uf: 'SP'}],
-    ['esthermonteiro@email.com', { uf: 'SP'}],
+    ['marcelorosa@email.com', { uf: 'MG' }],
+    ['samuelfreitas@email.com', { uf: 'SP' }],
+    ['esthermonteiro@email.com', { uf: 'SP' }],
 ];
 
 usersToBeCreated.forEach((user) => {
     const [nome, email, password] = user;
-    createUserUseCase(nome, email, password)
+    createUserUseCase(nome, email, password);
 });
 
 usersAdresses.forEach((userAddress) => {
@@ -28,5 +28,5 @@ usersAdresses.forEach((userAddress) => {
 const caseItFilter = filterByUserUFUseCase('SP');
 const caseItNotFilter = filterByUserUFUseCase('BA');
 
-console.log('Response when it succeeds:', '\n',caseItFilter);
+console.log('Response when it succeeds:', '\n', caseItFilter);
 console.log('Response when it fails:', '\n', caseItNotFilter);
