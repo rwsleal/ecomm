@@ -7,11 +7,11 @@ const getAll = (_req, res) => {
 const getById = (req, res, next) => {
     const { id } = req.params;
 
-    Account.findById(id, (err, account) => {
+    Account.findOne({ _id: id }, (err, account) => {
         if (err) {
             next(err);
         } else {
-            res.status(201).json(account);
+            res.status(200).json(account);
         }
     });
 };
