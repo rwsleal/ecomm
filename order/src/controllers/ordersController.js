@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import Order from '../models/Order.js';
 import { fetchAccountById, fetchPaymentById } from '../helpers/fetchAPI.js';
 
@@ -18,7 +19,7 @@ const confirm = async (req, res, next) => {
     const { id } = req.params;
     const { paymentId } = req.body;
 
-    Order.findByIdAndUpdate(id, { $set: { status: 'PAID' } }, { new: true }, (err, order) => {
+    Order.findOneAndUpdate({ _id: id }, { $set: { status: 'PAID' } }, { new: true }, (err, order) => {
         if (err) {
             next(err);
         } else {
@@ -26,7 +27,7 @@ const confirm = async (req, res, next) => {
         }
     });
 
-    Order.findById(id, async (err, order) => {
+    Order.findOne({ _id: id }, async (err, order) => {
         const { clientId, products } = order;
 
         const invoiceProducts = products.map((item) => {
@@ -39,7 +40,8 @@ const confirm = async (req, res, next) => {
         if (err) {
             next(err);
         } else {
-            const { name, cpf, address } = await fetchAccountById(clientId);
+            const response = await fetchAccountById(clientId);
+            const { name, cpf, address } = response;
             const payload = { name, cpf, address, products: invoiceProducts };
             await fetchPaymentById(paymentId, payload);
         }

@@ -2,8 +2,10 @@ import fetch from 'node-fetch';
 
 const fetchAccountById = async (id) => {
     try {
-        const response = await fetch(`http://ecomm-account:3002/admin/accounts/${id}`);
-        const account = await response.json();
+        const account = await fetch(`http://ecomm-account:3002/admin/accounts/${id}`, {
+            method: 'GET',
+        }).then((response) => response.json()).then((data) => data);
+        console.log(account);
         return account;
     } catch (error) {
         console.log(error);
