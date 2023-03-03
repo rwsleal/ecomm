@@ -44,11 +44,11 @@ const update = (req, res, next) => {
 const remove = (req, res, next) => {
     const { id } = req.params;
 
-    Account.findByIdAndDelete(id, (err) => {
+    Account.findOneAndRemove({ _id: id }, (err) => {
         if (err) {
             next(err);
         } else {
-            res.status(204).json({ message: 'account successfully deleted' });
+            res.status(204).end();
         }
     });
 };
