@@ -31,12 +31,12 @@ const create = (req, res, next) => {
 const update = (req, res, next) => {
     const { id } = req.params;
 
-    Account.findByIdAndUpdate(id, { $set: req.body }, { new: true }, (err, account) => {
+    Account.findOneAndUpdate({ _id: id }, { $set: req.body }, { new: true }, (err, account) => {
         if (err) {
             next(err);
         } else {
             res.status(200).set('Location', `/admin/accounts/${account.id}`)
-                .send({ message: 'account successfully updated' });
+                .send({ message: 'Account successfully updated' });
         }
     });
 };

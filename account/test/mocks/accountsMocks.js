@@ -32,4 +32,13 @@ const allAccountsMock = [
     },
 ];
 
-export { accountAddressMock, allAccountsMock };
+const accountToBeCreated = {
+    name: 'Lorena Alana Mendes',
+    email: 'lorenamendes@email.com',
+    password: 'senhaD4Lorena!',
+    cpf: '36391181896',
+    phone: '5583988939542',
+    address: accountAddressMock,
+};
+
+export { accountAddressMock, allAccountsMock, accountToBeCreated };
