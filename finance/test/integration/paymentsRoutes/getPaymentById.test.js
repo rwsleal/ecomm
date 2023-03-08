@@ -5,7 +5,7 @@ const { Payments } = require('../../../src/models/index.js');
 const { paymentReturnMock } = require('../../mocks/paymentsMocks.js');
 
 describe('GET /payments/:id', () => {
-    describe('Case it succeceds', () => {
+    describe('Case it succeeds', () => {
         beforeEach(() => {
             jest.spyOn(Payments, 'findOne').mockResolvedValue(paymentReturnMock);
         });
