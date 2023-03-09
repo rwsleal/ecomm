@@ -1,4 +1,5 @@
 import Account from '../models/Account.js';
+import { hashPassword } from '../helpers/bcryptHelper.js';
 
 const getAll = (_req, res) => {
     Account.find((_err, accounts) => res.status(200).json(accounts));
@@ -16,8 +17,11 @@ const getById = (req, res, next) => {
     });
 };
 
-const create = (req, res, next) => {
-    const account = new Account(req.body);
+const create = async (req, res, next) => {
+    const { password } = req.body;
+    const passwordHash = await hashPassword(password);
+    const newAccount = { ...req.body, password: passwordHash };
+    const account = new Account(newAccount);
 
     account.save((err) => {
         if (err) {
