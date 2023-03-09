@@ -10,7 +10,7 @@ const checkPassword = (password, passwordHash) => {
     const check = bcrypt.compareSync(password, passwordHash);
 
     if (!check) {
-        throw new Error('401|Incorrect email or password');
+        throw new Error('401|Invalid password provided');
     }
 };
 
