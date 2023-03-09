@@ -19,6 +19,10 @@ const getById = async (req, res) => {
         },
     );
 
+    if (!payment) {
+        return res.status(200).json({});
+    }
+
     return res.status(200).json(payment);
 };
 

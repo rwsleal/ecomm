@@ -1,4 +1,4 @@
-import { createUserUseCase } from "../src/use-case/createUserAccount.js";
+import { createUserUseCase } from '../src/use-case/createUserAccount.js';
 
 const response = createUserUseCase('Josué Lima', 'josuelima@email.com', 'senhaDoJosue');
 

@@ -6,7 +6,6 @@ const getAll = (_req, res) => {
 
 const create = (req, res, next) => {
     const product = new Product(req.body);
-
     product.save((err) => {
         if (err) {
             next(err);
@@ -19,11 +18,11 @@ const create = (req, res, next) => {
 const getById = (req, res, next) => {
     const { id } = req.params;
 
-    Product.findById(id, (err, product) => {
+    Product.findOne({ _id: id }, (err, product) => {
         if (err) {
             next(err);
         } else {
-            res.status(201).json(product);
+            res.status(200).json(product);
         }
     });
 };
@@ -31,12 +30,12 @@ const getById = (req, res, next) => {
 const update = (req, res, next) => {
     const { id } = req.params;
 
-    Product.findByIdAndUpdate(id, { $set: req.body }, { new: true }, (err, product) => {
+    Product.findOneAndUpdate({ _id: id }, { $set: req.body }, { new: true }, (err, product) => {
         if (err) {
             next(err);
         } else {
             res.status(200).set('Location', `/admin/products/${product.id}`)
-                .send({ message: 'product successfully updated' });
+                .send({ message: 'Product successfully updated' });
         }
     });
 };
@@ -44,11 +43,11 @@ const update = (req, res, next) => {
 const remove = (req, res, next) => {
     const { id } = req.params;
 
-    Product.findByIdAndDelete(id, (err) => {
+    Product.findOneAndRemove({ _id: id }, (err) => {
         if (err) {
             next(err);
         } else {
-            res.status(204).json({ message: 'product successfully deleted' });
+            res.status(204).end();
         }
     });
 };

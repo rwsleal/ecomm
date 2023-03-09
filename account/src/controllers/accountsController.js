@@ -7,11 +7,11 @@ const getAll = (_req, res) => {
 const getById = (req, res, next) => {
     const { id } = req.params;
 
-    Account.findById(id, (err, account) => {
+    Account.findOne({ _id: id }, (err, account) => {
         if (err) {
             next(err);
         } else {
-            res.status(201).json(account);
+            res.status(200).json(account);
         }
     });
 };
@@ -31,12 +31,12 @@ const create = (req, res, next) => {
 const update = (req, res, next) => {
     const { id } = req.params;
 
-    Account.findByIdAndUpdate(id, { $set: req.body }, { new: true }, (err, account) => {
+    Account.findOneAndUpdate({ _id: id }, { $set: req.body }, { new: true }, (err, account) => {
         if (err) {
             next(err);
         } else {
             res.status(200).set('Location', `/admin/accounts/${account.id}`)
-                .send({ message: 'account successfully updated' });
+                .send({ message: 'Account successfully updated' });
         }
     });
 };
@@ -44,11 +44,11 @@ const update = (req, res, next) => {
 const remove = (req, res, next) => {
     const { id } = req.params;
 
-    Account.findByIdAndDelete(id, (err) => {
+    Account.findOneAndRemove({ _id: id }, (err) => {
         if (err) {
             next(err);
         } else {
-            res.status(204).json({ message: 'account successfully deleted' });
+            res.status(204).end();
         }
     });
 };

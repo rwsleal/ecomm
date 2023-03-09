@@ -1,3 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 import * as fs from 'fs';
 
 const accounts = JSON.parse(fs.readFileSync('./src/use-case/accounts.json'));
@@ -15,7 +16,7 @@ const removeUserUseCase = (email) => {
         return !accounts.includes(userToBeRemoved);
     }
 
-    return false
-}
+    return false;
+};
 
 export { removeUserUseCase };
