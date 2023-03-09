@@ -9,9 +9,7 @@ const hashPassword = async (password) => {
 const checkPassword = (password, passwordHash) => {
     const check = bcrypt.compareSync(password, passwordHash);
 
-    if (!check) {
-        throw new Error('401|Invalid password provided');
-    }
+    return check;
 };
 
 export { hashPassword, checkPassword };

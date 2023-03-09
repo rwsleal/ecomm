@@ -1,7 +1,7 @@
 import passport from 'passport';
 import { Strategy as LocalStrategy } from 'passport-local';
 import Account from '../models/Account.js';
-import { checkPassword, hashPassword } from '../helpers/bcryptHelper.js';
+import { checkPassword } from '../helpers/bcryptHelper.js';
 
 passport.use(
     new LocalStrategy({
@@ -9,17 +9,20 @@ passport.use(
         passwordField: 'password',
         session: false,
     }, (email, password, done) => {
-        Account.findOne({ email }, (err, account) => {
+        Account.findOne({ email }, async (err, account) => {
             if (err) {
                 return done(err);
             }
             if (account === null) {
-                return done(() => {
-                    throw new Error('401|Invalid email provided');
-                });
+                return done(new Error('401|Invalid email provided'));
             }
 
-            checkPassword(password, hashPassword(password));
+            const check = checkPassword(password, account.password);
+            
+            if (!check) {
+                console.log(check);
+                return done(new Error('401|Invalid password provided'));
+            }
 
             return done(null, account);
         });

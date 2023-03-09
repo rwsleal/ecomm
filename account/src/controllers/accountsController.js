@@ -1,5 +1,13 @@
 import Account from '../models/Account.js';
 import { hashPassword } from '../helpers/bcryptHelper.js';
+import { createToken } from '../helpers/jwtHelper.js';
+
+const login = (req, res) => {
+    const { id } = req.user;
+    const token = createToken(id);
+
+    res.status(204).set('Authorization', token).send();
+};
 
 const getAll = (_req, res) => {
     Account.find((_err, accounts) => res.status(200).json(accounts));
@@ -57,4 +65,4 @@ const remove = (req, res, next) => {
     });
 };
 
-export { getAll, getById, create, update, remove };
+export { login, getAll, getById, create, update, remove };

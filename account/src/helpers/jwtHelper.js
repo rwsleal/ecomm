@@ -3,8 +3,8 @@ import 'dotenv/config.js';
 
 const SECRET = process.env.JWT || 'jwt_secret';
 
-const createToken = (payload) => {
-    const token = jwt.sign(payload, process.env.JWT, { expiresIn: '7d' });
+const createToken = (id) => {
+    const token = jwt.sign({ id }, process.env.JWT, { expiresIn: '7d', algorithm: 'HS256' });
     return token;
 };
 
