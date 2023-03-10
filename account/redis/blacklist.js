@@ -1,8 +1,9 @@
 import redis from 'redis';
 
 const client = redis.createClient({
-  host: 'redis',
+  host: 'ecomm-redis',
   port: 6379,
+  prefix: 'blacklist:',
 });
 
 client.on('connect', () => {
@@ -10,7 +11,7 @@ client.on('connect', () => {
 });
 
 client.on('error', (err) => {
-  console.log('Error:', err);
+  console.log(err);
 });
 
 export default client;
