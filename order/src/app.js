@@ -1,7 +1,8 @@
 import express from 'express';
 import db from './database/config/mongodbConnection.js';
 import ordersRoutes from './routes/index.js';
-import { errorHandler } from './middlewares/index.js';
+// eslint-disable-next-line no-unused-vars, import/named
+import { errorHandler, BearerStrategy } from './middlewares/index.js';
 
 db.once('open', () => {
     console.log('MongoDB succesfully connected!');
