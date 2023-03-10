@@ -1,5 +1,5 @@
 import Account from '../models/Account.js';
-import { hashPassword } from '../helpers/bcryptHelper.js';
+import { createHash } from '../helpers/bcryptHelper.js';
 import { createToken } from '../helpers/jwtHelper.js';
 
 const login = (req, res) => {
@@ -27,7 +27,7 @@ const getById = (req, res, next) => {
 
 const create = async (req, res, next) => {
     const { password } = req.body;
-    const passwordHash = await hashPassword(password);
+    const passwordHash = await createHash(password);
     const newAccount = { ...req.body, password: passwordHash };
     const account = new Account(newAccount);
 

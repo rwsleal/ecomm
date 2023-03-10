@@ -1,9 +1,9 @@
 import bcrypt from 'bcryptjs';
 
-const hashPassword = async (password) => {
+const createHash = async (string) => {
     const saltRounds = 10;
     const salt = await bcrypt.genSalt(saltRounds);
-    return bcrypt.hash(password, salt);
+    return bcrypt.hash(string, salt);
 };
 
 const checkPassword = (password, passwordHash) => {
@@ -12,4 +12,4 @@ const checkPassword = (password, passwordHash) => {
     return check;
 };
 
-export { hashPassword, checkPassword };
+export { createHash, checkPassword };
