@@ -1,12 +1,20 @@
 import Account from '../models/Account.js';
 import { createHash } from '../helpers/bcryptHelper.js';
 import { createToken } from '../helpers/jwtHelper.js';
+import { blacklistAdd } from '../../redis/blacklistManagement.js';
 
 const login = (req, res) => {
     const { id } = req.user;
     const token = createToken(id);
 
     res.status(204).set('Authorization', token).send();
+};
+
+const logout = async (req, res) => {
+    const { token } = req.authInfo;
+    await blacklistAdd(token);
+    
+    res.status(204).send();
 };
 
 const getAll = (_req, res) => {
@@ -65,4 +73,4 @@ const remove = (req, res, next) => {
     });
 };
 
-export { login, getAll, getById, create, update, remove };
+export { login, logout, getAll, getById, create, update, remove };

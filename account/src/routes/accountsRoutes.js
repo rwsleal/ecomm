@@ -17,30 +17,35 @@ router
         '/accounts/login',
         localAuthenticate,
         accountsController.login,
-        )
+    )
+    .get(
+        '/accounts/logout',
+        bearerAuthenticate,
+        accountsController.logout,
+    )
     .get(
         '/admin/accounts',
         bearerAuthenticate,
         accountsController.getAll,
-        )
+    )
     .get(
         adminEndpointById,
         accountsController.getById,
-        )
+    )
     .post(
         '/admin/accounts',
         validationHandler(accountsSchema),
         accountsController.create,
-        )
+    )
     .put(
         adminEndpointById,
         bearerAuthenticate,
         validationHandler(accountsSchema),
         accountsController.update,
-        )
+    )
     .delete(
         adminEndpointById,
         bearerAuthenticate,
         accountsController.remove,
-        );
+    );
 export default router;
