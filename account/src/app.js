@@ -1,8 +1,9 @@
+/* eslint-disable no-unused-vars */
 import express from 'express';
 import db from './database/config/mongodbConnection.js';
 import accountsRoutes from './routes/index.js';
 import { errorHandler } from './middlewares/index.js';
-// eslint-disable-next-line no-unused-vars
+import client from '../redis/blacklist.js';
 import { LocalStrategy } from './middlewares/authStrategies.js';
 
 db.once('open', () => {
