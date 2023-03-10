@@ -17,4 +17,10 @@ const checkToken = (token) => {
     }
 };
 
-export { createToken, checkToken };
+const decodeTokenExp = (token) => {
+    const expirationDate = jwt.decode(token).exp;
+
+    return expirationDate;
+};
+
+export { createToken, checkToken, decodeTokenExp };
