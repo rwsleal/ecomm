@@ -92,3 +92,27 @@ Foram utilizados nesse projeto eventos síncronos e assíncronos, como por exemp
 ## Agregação de logs e métricas
 
 Não foram aplicados neste projeto.
+
+## Padronização das stacks de serviço
+
+Em todos os serviços utilizados neste projeto, foram utilizados Node e express, o que se configura como uma padronização de stacks.
+
+## Solução para service discovery
+
+Como utilizamos docker, ele ficou responsável por nomear todos os serviços, permitindo a comunicação entre eles.
+
+## Aspectos de segurança
+
+Alguns aspectos de segurança foram implementados nesse projeto, como por exemplo o uso de criptografia de senhas (segurança em repouso) e autenticação e autorização atráves de tokens JWT (segurança da aplicação).
+
+## Tecnologias a adotar para deploy e build
+
+Não foi adotado neste projeto. O ideal seria a utilização de, por exemplo, as github actions para automatização e implementação de CI/CD.
+
+## Lidar com tolerância a falhas em aplicações síncronas
+
+Soluções como circuit break não foram implementadas. É importante que essa solução seja utilizada quando falamos em microserviços, uma vez que ela impede que as falhas de operações síncronas se propagem pela aplicação, o que permite que elas sejam tratadas de forma mais eficiente.
+
+## Quando usar comunicação assíncrona
+
+Quando a resposta não precisa ser obtida imediatamente a comunicação assíncrona acaba sendo ideal. Dessa maneira, o processamento pode acontecer no background sem interromper o fluxo da aplicação.
